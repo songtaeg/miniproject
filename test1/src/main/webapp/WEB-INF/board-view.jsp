@@ -9,8 +9,8 @@
 </head>
 <body>
 	<div id="app">
-		<p>제목: {{ info.title }} </p><br>
-		<p>내용: {{ info.contents }}</p>
+		<div>제목: {{ info.title }} </div><br>
+		<div>내용: {{ info.contents }}</div>
 	</div>
 </body>
 </html>
@@ -27,7 +27,7 @@
 				var self = this;
 				var nparmap = {keyword : self.boardNo};
 				$.ajax({
-					url:"board-view.dox",
+					url: "board-view.dox",
 					dataType:"json",	
 					type : "POST", 
 					data : nparmap,

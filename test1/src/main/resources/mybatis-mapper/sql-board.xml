@@ -7,7 +7,34 @@
 		SELECT *
 		FROM TBL_BOARD b
 		inner join tbl_user u on b.userid=u.userid
-		WHERE TITLE LIKE '%' || #{keyword} || '%'
+		WHERE 1=1
+		<if test="category !='' and category !=null">
+			and category=#{category}
+		</if>
+
+		<if test="searchOption == 'all'">
+			and (TITLE LIKE '%' || #{keyword} || '%'
+			or username LIKE '%' || #{keyword} || '%')
+		</if> 
+		<if test="searchOption == 'title'">
+			and TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test="searchOption == 'name'">
+			 and username LIKE '%' || #{keyword} || '%'
+		</if>
+		<!-- <choose>
+			<when test="searchOption=='title'">
+				TITLE LIKE '%' || #{keyword} || '%'
+			</when>
+			<when test="searchOption == 'name'">
+				username LIKE '%' || #{keyword} || '%'
+			</when>
+			<otherwise>
+				TITLE LIKE '%' || #{keyword} || '%'
+				or username LIKE '%' || #{keyword} || '%'
+			</otherwise> 
+		</choose> -->		
+		   
 	</select>
 	
 	<delete id="deleteBoard" parameterType="hashmap">

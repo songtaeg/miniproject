@@ -21,6 +21,11 @@
 	<div id="app">
 		<button @click="fnboardList">게시글 목록(userControll에서 작성)</button>
 		<div>
+			<select style="margin-right:5px;" v-model="searchOption">
+				<option value="all">::전체::</option>
+				<option value="id">아이디</option>
+				<option value="email">이메일</option>
+			</select>
 			<input placeholder="검색" v-model="keyword">
 			<button @click="fnUserList">검색</button>
 		</div>
@@ -46,13 +51,17 @@
         data() {
             return {
 				userList:[],
-				keyword: ""
+				keyword: "",
+				searchOption:"all",
             };
         },
         methods: {
 			fnUserList(){
 				var self = this;
-				var nparam = {keyword : self.keyword};
+				var nparam = {
+					keyword : self.keyword,
+					searchOption:self.searchOption,
+				};
 				$.ajax({
 					url:"user-list.dox",
 					dataType:"json",	

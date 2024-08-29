@@ -12,8 +12,19 @@
 	<select id="selectUserList" parameterType="hashmap" resultType="com.example.test1.model.User">
 		select *
 		from tbl_user
-		where userid like '%'|| #{keyword} || '%'
+		where 1=1
+		<if test="searchOption == 'all'">
+			and (userid like '%'|| #{keyword} || '%'
+			or email like '%'|| #{keyword} || '%')
+		</if>
+		<if test="searchOption == 'id'">
+			 and userid like '%'|| #{keyword} || '%'
+		</if>
+		<if test="searchOption == 'email'">
+			 and email like '%'|| #{keyword} || '%'
+		</if>
 	</select>
+	
 	
 	<select id="selectBoardList" parameterType="hashmap" resultType="com.example.test1.model.Board">
 		select *
