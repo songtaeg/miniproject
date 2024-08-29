@@ -9,8 +9,8 @@
 </head>
 <body>
 	<div id="app">
-		<div>제목: {{ info.title }} </div><br>
-		<div>내용: {{ info.contents }}</div>
+		제목: {{ info.title }} <br>
+		내용: <div v-html="info.contents"></div>
 	</div>
 </body>
 </html>

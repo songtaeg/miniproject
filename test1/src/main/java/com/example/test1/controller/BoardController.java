@@ -36,6 +36,12 @@ public class BoardController {
         return "/board-insert";
     }
 	
+	@RequestMapping("/board-insert2.do") 
+    public String boardInsert2(Model model) throws Exception{
+
+        return "/board-insert2";
+    }
+	
 	//게시글 보기
 	@RequestMapping("/board-view.do") 
     public String boardView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{

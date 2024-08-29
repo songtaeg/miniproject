@@ -6,7 +6,7 @@
 	<select id="selectUserInfo" parameterType="hashmap" resultType="com.example.test1.model.User">
 		select *
 		from tbl_user
-		where USERID = #{userId}
+		where USERID = #{id}
 	</select>
 	
 	<select id="selectUserList" parameterType="hashmap" resultType="com.example.test1.model.User">
@@ -36,4 +36,10 @@
 		from tbl_user
 		where userid =  #{userId} 
 	</delete>
+	
+	<select id="loginUser" parameterType="hashmap" resultType="com.example.test1.model.User">
+		select * 
+		from tbl_user
+		where USERID = #{id} and pwd = #{pwd}
+	</select>
 </mapper>

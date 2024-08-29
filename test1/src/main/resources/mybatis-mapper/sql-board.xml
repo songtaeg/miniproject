@@ -51,7 +51,7 @@
 	<select id="selectBoardInfo" parameterType="hashmap" resultType="com.example.test1.model.Board">
 		SELECT *
 		FROM TBL_BOARD
-		WHERE BOARDNO = #{boardNo}
+		WHERE BOARDNO = #{keyword}
 	</select>
 	
 </mapper>

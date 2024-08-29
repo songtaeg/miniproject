@@ -14,4 +14,7 @@ public interface UserService {
 	
 	//사용자 삭제
 	HashMap<String, Object> deleteUser(HashMap<String, Object> map);
+	
+	//사용자 로그인
+	HashMap<String, Object> loginUser(HashMap<String, Object> map);
 }

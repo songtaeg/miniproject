@@ -67,6 +67,7 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap =
 				new HashMap<String, Object>();
+		System.out.println(map);
 		try {
 			Board board= boardMapper.selectBoardInfo(map);
 			resultMap.put("info", board);
