@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test1.mapper.SchoolMapper">
+	<select id="selectStuList" parameterType="hashmap" resultType="com.example.test1.model.School">
+		SELECT
+			stuno, 
+			name,
+			substr(id, 1, length(id) -3) || '***' as id,
+			grade,
+			substr (jumin,1,6) || '-' || substr (jumin,7,1) || '*****' as jumin
+		FROM stu
+	</select>
+	
+	<select id="detailStuList" parameterType="hashmap" resultType="com.example.test1.model.School">
+		select s.stuno as stuNo, s.name as name, d1.dname as dpart, d.dname as dname, p.name as profname 
+		from stu s 
+		inner join department d on s.deptno1=d.deptno
+		inner join department d1 on d1.deptno=d.part
+		left join professor p on s.profno=p.profno
+		where s.stuno= #{stuNo}
+	</select>
+	
+	<insert id="insertStu" parameterType="hashmap">
+		insert into stu(stuno,name,id,grade,jumin) 
+		values (#{stuNo}, #{name}, #{id}, #{grade}, #{jumin} ) 
+	</insert>
+</mapper>

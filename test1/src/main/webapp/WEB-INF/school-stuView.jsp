@@ -5,16 +5,17 @@
 <head>
 	<meta charset="UTF-8">
 	<jsp:include page="/layout/menu.jsp"></jsp:include>
-	<title>첫번째 페이지</title>
+	<title>view 기본 세팅 파일</title>
 </head>
+<style>
+</style>
 <body>
 	<div id="app">
-		제목: {{ info.title }} <br>
-		내용: <div v-html="info.contents"></div>
-		작성자:<span> {{info.userId}}</span>
-		<div v-if="sessionId == info.userId || sessionStatus =='A' ">
-			<button>삭제</button>
-		</div>		
+		학번: {{info.stuNo}}<br>
+		이름: {{info.name}}<br>
+		학부: {{info.dpart}}<br>
+		학과: {{info.dname}}<br>
+		담당교수: {{info.profname}}<br>	
 	</div>
 </body>
 </html>
@@ -22,18 +23,16 @@
     const app = Vue.createApp({
         data() {
             return {
-				boardNo:'${boardNo}',
-				info : {},
-				sessionId:'${sessionId}',
-				sessionStatus:'${sessionStatus}'
+				stuNo:'${stuNo}',
+				info:{}
             };
         },
         methods: {
 			fnGetInfo(){
 				var self = this;
-				var nparmap = {keyword : self.boardNo};
+				var nparmap = {stuNo:self.stuNo};
 				$.ajax({
-					url: "board-view.dox",
+					url: "school-stuView.dox",
 					dataType:"json",	
 					type : "POST", 
 					data : nparmap,
@@ -43,7 +42,6 @@
 					}
 				});
 			}
-		
         },
         mounted() {
 			var self = this;

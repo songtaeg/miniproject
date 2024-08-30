@@ -18,4 +18,5 @@ public class Board {
 	private String udateTime;
 	
 	private String userName;
+	private String email;
 }

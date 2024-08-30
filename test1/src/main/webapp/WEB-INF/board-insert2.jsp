@@ -14,11 +14,14 @@
 	table {
 			margin : 20px;
 		}
-		table, tr, th, td {
+	table, tr, th, td {
 			border : 1px solid black;
 			padding : 5px 5px;
 			border-collapse: collapse;
 		}
+	#editor{
+		height: 300px;
+	}	
 </style>
 <body>
 	<div id="app">
@@ -41,14 +44,19 @@
         data() {
             return {
 				title : "",
-				contents : ""
+				contents : "",
+				sessionId: '${sessionId}'
             };
         },
         methods: {
             // fnSave 생성 후 board-add.dox 호출해서 저장
 			fnSave(){
 				var self = this;
-				var nparam = {title : self.title, contents : self.contents};
+				var nparam = {
+					title : self.title, 
+					contents : self.contents,
+					userId:self.sessionId
+				};
 				$.ajax({
 					url:"board-add.dox",
 					dataType:"json",	
@@ -64,24 +72,27 @@
 			}
         },
         mounted() {
+			var self=this;
 			// Quill 에디터 초기화
-			       var quill = new Quill('#editor', {
-			           theme: 'snow',
-			           modules: {
-			               toolbar: [
+			var quill = new Quill('#editor', {
+			    theme: 'snow',
+			    modules: {
+			        toolbar: [
 			                   [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 			                   ['bold', 'italic', 'underline'],
 			                   [{ 'list': 'ordered'}, { 'list': 'bullet' }],
 			                   ['link', 'image'],
 			                   ['clean']
 			               ]
-			           }
-			       });
-
-			       // 에디터 내용이 변경될 때마다 Vue 데이터를 업데이트
-			       quill.on('text-change', function() {
-			           app.contents = quill.root.innerHTML;
-			       });
+			     }
+			 });
+			 //에디터 초기 내용
+			 quill.root.innerHTML=self.contents;
+				   
+			 // 에디터 내용이 변경될 때마다 Vue 데이터를 업데이트
+			 quill.on('text-change', function() {
+			     self.contents = quill.root.innerHTML;
+			 });
         }
     });
     app.mount('#app');

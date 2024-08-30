@@ -19,7 +19,7 @@
 </style>
 <body>
 	<div id="app">
-		<ul style="margin: 20px;">
+		<ul  style="margin: 20px;">
 			<li><a href="#" @click="fnCategory('')"> 전체</a></li>
 			<li><a href="#" @click="fnCategory(1)"> 공지사항</a></li>
 			<li><a href="#" @click="fnCategory(2)"> 자유게시판</a></li>
@@ -52,9 +52,16 @@
 				<td>{{item.hit}}</td>
 				<td>{{item.cdateTime}}</td>
 				<td>{{item.category}}
-				<td><button @click="fnRemove(item.boardNo)">삭제</button></td>
+				<td>
+					<div v-if="sessionEmail == item.email || sessionStatus=='A' ">
+						<button @click="fnRemove(item.boardNo)">삭제</button>
+					</div>
+				</td>
 			</tr>	
 		</table>
+		<div>
+			<button @click=fnInsert>글쓰기</button>
+		</div>	
 	</div>
 </body>
 </html>
@@ -65,7 +72,10 @@
 				list : [],
 				keyword : "",
 				searchOption:"all",
-				category:""
+				category:"",
+				sessionId:'${sessionId}',
+				sessionStatus:'${sessionStatus}',
+				sessionEmail:'${sessionEmail}'
             };
         },
         methods: {
@@ -109,6 +119,9 @@
 				var self=this;
 				self.category=category;
 				self.fnGetList();
+			},
+			fnInsert(){
+				$.pageChange("board-insert2.do",{})
 			}
         },
         mounted() {

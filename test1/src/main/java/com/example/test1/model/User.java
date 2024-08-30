@@ -10,4 +10,20 @@ public class User {
 	private String email;
 	private String phone;
 	private String gender;
+	private String status;
+	
+	public String getUserId() {
+		return userId;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public String getEmail() {
+		return email;
+	}
+	
+	
 }

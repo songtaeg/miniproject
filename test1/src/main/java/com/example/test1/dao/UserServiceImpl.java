@@ -3,6 +3,8 @@ package com.example.test1.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ import com.example.test1.model.User;
 public class UserServiceImpl implements UserService{
 	@Autowired
 	UserMapper userMapper;
+	
+	@Autowired
+	HttpSession session;
 	
 	@Override
 	public HashMap<String, Object> searchUserInfo(HashMap<String, Object> map) {
@@ -89,21 +94,25 @@ public class UserServiceImpl implements UserService{
 		HashMap<String, Object> resultMap =new HashMap<String, Object>();
 		try {
 			User user=userMapper.loginUser(map);
-			System.out.println(user);
+			//System.out.println(user);
 			if(user==null) {
 				resultMap.put("result", "fail");
 				User idCheck=userMapper.selectUserInfo(map);
-				System.out.println(idCheck);
-				if(idCheck==null) {
+				//System.out.println(idCheck);
+				if(idCheck == null) {
 					resultMap.put("message", "없는 아이디");
 				}else {
 					resultMap.put("message", "비밀번호 다시 확인");
 				}
-				resultMap.put("message", "id/pwd 확인");
+				//resultMap.put("message", "id/pwd 확인");
 			}
 			else {
 				resultMap.put("result", "success");
 				resultMap.put("message", "로그인 성공");
+				session.setAttribute("sessionId", user.getUserId());
+				session.setAttribute("sessionName", user.getUserName());
+				session.setAttribute("sessionStatus", user.getStatus());
+				session.setAttribute("sessionEmail", user.getEmail());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
