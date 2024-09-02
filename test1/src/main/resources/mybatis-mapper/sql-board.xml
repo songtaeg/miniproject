@@ -22,6 +22,8 @@
 		<if test="searchOption == 'name'">
 			 and username LIKE '%' || #{keyword} || '%'
 		</if>
+		order by cdatetime desc, boardno desc
+		offset #{startIndex} rows FETCH FIRST #{outputNumber} ROWS only
 		<!-- <choose>
 			<when test="searchOption=='title'">
 				TITLE LIKE '%' || #{keyword} || '%'
@@ -54,4 +56,15 @@
 		WHERE BOARDNO = #{keyword}
 	</select>
 	
+	<select id="CountBoardList" parameterType="hashmap" resultType="int">
+		select count(*) as cnt
+		from tbl_board
+	</select>
+	
+	<select id="selectComment" parameterType="hashmap" resultType="com.example.test1.model.Board">
+		select * 
+		from tbl_comment c
+		inner join tbl_user u on c.userid=u.userid
+		where boardno=#{boardNo}
+	</select>
 </mapper>

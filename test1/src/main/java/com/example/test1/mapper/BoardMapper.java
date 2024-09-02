@@ -17,5 +17,11 @@ public interface BoardMapper {
 	// 게시글 등록
 	void insertBoard(HashMap<String, Object> map);
 	
+	//게시글 상세보기
 	Board selectBoardInfo(HashMap<String, Object> map);
+	
+	//게시글 전체 갯수
+	int CountBoardList(HashMap<String, Object> map);
+	
+	List<Board> selectComment(HashMap<String, Object> map);
 }

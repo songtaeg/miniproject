@@ -16,4 +16,5 @@ public interface SchoolMapper {
 	
 	void insertStu(HashMap<String, Object> map);
 
+	int CountStuList(HashMap<String, Object> map);
 }

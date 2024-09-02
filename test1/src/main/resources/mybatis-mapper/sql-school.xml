@@ -11,6 +11,7 @@
 			grade,
 			substr (jumin,1,6) || '-' || substr (jumin,7,1) || '*****' as jumin
 		FROM stu
+		offset #{startIndex} rows FETCH FIRST #{outputNumber} ROWS only
 	</select>
 	
 	<select id="detailStuList" parameterType="hashmap" resultType="com.example.test1.model.School">
@@ -26,4 +27,9 @@
 		insert into stu(stuno,name,id,grade,jumin) 
 		values (#{stuNo}, #{name}, #{id}, #{grade}, #{jumin} ) 
 	</insert>
+	
+	<select id="CountStuList" parameterType="hashmap" resultType="int">
+		select count(*) as cnt
+		from stu
+	</select>
 </mapper>

@@ -19,7 +19,10 @@ public class SchoolServiceImpl implements SchoolService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		List<School> list= schoolMapper.selectStuList(map);
+		int count=schoolMapper.CountStuList(map);
+		
 		resultMap.put("list", list);
+		resultMap.put("count", count);
 		resultMap.put("result", "success");
 		
 		return resultMap;

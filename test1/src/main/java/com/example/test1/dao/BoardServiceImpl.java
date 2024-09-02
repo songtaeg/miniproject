@@ -23,7 +23,10 @@ public class BoardServiceImpl implements BoardService{
 		HashMap<String, Object> resultMap = 
 				new HashMap<String, Object>();
 		List<Board> list = boardMapper.selectBoardList(map);
+		int count=boardMapper.CountBoardList(map);
+		
 		resultMap.put("list", list);
+		resultMap.put("count", count);
 		resultMap.put("result", "success");
 		
 		return resultMap;
@@ -67,10 +70,13 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap =
 				new HashMap<String, Object>();
-		System.out.println(map);
+		//System.out.println(map);
 		try {
 			Board board= boardMapper.selectBoardInfo(map);
+			List<Board> commentList = boardMapper.selectComment(map);
+			resultMap.put("commentList", commentList);
 			resultMap.put("info", board);
+		
 			resultMap.put("result", "success");
 			resultMap.put("message", "검색되었습니다.");
 		} catch (Exception e) {

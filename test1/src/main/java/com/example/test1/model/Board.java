@@ -19,4 +19,7 @@ public class Board {
 	
 	private String userName;
 	private String email;
+	
+	private String commentNo;
+	private String pCommentNo;
 }
