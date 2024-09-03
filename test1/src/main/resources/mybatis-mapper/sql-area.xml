@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.test1.mapper.AreaMapper">
+	<select id="selectSiList" parameterType="hashmap" resultType="com.example.test1.model.Area">
+		select si 
+		from tbl_area 
+		group by si 
+		order by si 
+	</select>
+	
+	<select id="selectGuList" parameterType="hashmap" resultType="com.example.test1.model.Area">
+		select si,gu 
+		from tbl_area
+		where si=#{si}
+		group by si,gu
+	</select>
+	
+	<select id="selectDongList" parameterType="hashmap" resultType="com.example.test1.model.Area">
+		select si,gu,dong 
+		from tbl_area
+		where si=#{si} 
+		and gu=#{gu} 
+		group by si,gu,dong
+	</select>
+</mapper>
