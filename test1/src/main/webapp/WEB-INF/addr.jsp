@@ -11,26 +11,10 @@
 </style>
 <body>
 	<div id="app">
-	 도/시
-	 	<select v-model="si" @change="fnGetArea">
-			<option value="">::선택::</option>
-			<option v-for="item in siList" :value="item.si">{{item.si}}</option>
-		</select>
-	구/군
-		<select v-model="gu" @change="fnGetArea">
-			<option value="">::선택::</option>
-			<option v-for="item in guList" :value="item.gu">{{item.gu}}</option>
-		</select>
-	동/면/리
-		<select v-model="dong" @change="fnGetArea">
-			<option value="">::선택::</option>
-			<option v-for="item in dongList" :value="item.dong">{{item.dong}}</option>
-		</select>
-		
 		<div>
 			<input type="text" class="in" placeholder="주소" v-model="roadFullAddr"></input>
 			<button @click="fnSearchAddr">주소 검색</button>
-		</div>	
+		</div>
 	</div>
 </body>
 </html>
@@ -45,44 +29,10 @@
     const app = Vue.createApp({
         data() {
             return {
-				si:"",
-				siList:[],
-				gu:"",
-				guList:[],
-				dong:"",
-				dongList:[],
 				roadFullAddr:""
             };
         },
         methods: {
-			fnGetArea(){
-				var self=this;
-				if(self.si==""){
-					self.guList=[];
-					self.dongList=[];
-				}
-				var nparmap ={
-					si: self.si,
-					gu: self.gu,
-					dong: self.dong
-				};
-				$.ajax({
-					url:"area.dox",
-					dataType:"json",	
-					type : "POST", 
-					data : nparmap,
-					success : function(data) { 
-						console.log(data.list);
-						if(self.si !=""){
-							self.guList=data.list;
-							self.dongList=data.list;
-						}else{
-							self.siList=data.list;
-						}
-						
-					}
-				});
-			},
 			fnSearchAddr(){
 				var self = this;
 				var option = "width = 500, height = 500, top = 100, left = 200, location = no"
@@ -97,10 +47,9 @@
 				console.log(addrDetail);
 				console.log(engAddr);
 			}
+			
         },
         mounted() {
-			var self = this;
-			this.fnGetArea();
 			window.vueAppInstance = this;
         }
     });

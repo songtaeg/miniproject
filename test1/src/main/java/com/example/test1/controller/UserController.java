@@ -51,6 +51,12 @@ public class UserController {
         return "/delete";
     }
 	
+	@RequestMapping("/register.do") 
+    public String register(Model model) throws Exception{
+
+        return "/register";
+    }
+	
 	@RequestMapping("/user-view.do") 
     public String userView(HttpServletRequest request, Model model,@RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("userId", map.get("userId"));
