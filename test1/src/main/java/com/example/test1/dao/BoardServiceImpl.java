@@ -54,7 +54,10 @@ public class BoardServiceImpl implements BoardService{
 		HashMap<String, Object> resultMap =
 				new HashMap<String, Object>();
 		try {
+			System.out.println(map);
 			boardMapper.insertBoard(map);
+			System.out.println(map);
+			resultMap.put("idx", map.get("boardNo"));
 			resultMap.put("result", "success");
 			resultMap.put("message", "등록되었습니다.");
 		} catch (Exception e) {
@@ -72,9 +75,11 @@ public class BoardServiceImpl implements BoardService{
 				new HashMap<String, Object>();
 		//System.out.println(map);
 		try {
+			System.out.println(map);
 			Board board= boardMapper.selectBoardInfo(map);
-			List<Board> commentList = boardMapper.selectComment(map);
-			resultMap.put("commentList", commentList);
+			System.out.println(map);
+			//List<Board> commentList = boardMapper.selectComment(map);
+			//resultMap.put("commentList", commentList);
 			resultMap.put("info", board);
 		
 			resultMap.put("result", "success");
@@ -85,6 +90,14 @@ public class BoardServiceImpl implements BoardService{
 			resultMap.put("message", "예기치 못한 문제가 발생했습니다. \n나중에 다시 시도해주세요.");
 		}
 		return resultMap;
+	}
+
+	@Override
+	public HashMap<String, Object> addBoardFile(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		boardMapper.insertBoardFile(map);
+		
+		return null;
 	}
 
 

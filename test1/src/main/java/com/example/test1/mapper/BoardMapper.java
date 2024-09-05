@@ -24,4 +24,7 @@ public interface BoardMapper {
 	int CountBoardList(HashMap<String, Object> map);
 	
 	List<Board> selectComment(HashMap<String, Object> map);
+	
+	//파일 업로드
+	void insertBoardFile(HashMap<String, Object> map);
 }

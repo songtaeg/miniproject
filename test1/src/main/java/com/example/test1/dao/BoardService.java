@@ -14,4 +14,7 @@ public interface BoardService {
 	
 	//게시글 상세 조회
 	HashMap<String,Object> searchBoardInfo(HashMap<String,Object> map);
+	
+	//파일 업로드
+	HashMap<String,Object> addBoardFile(HashMap<String,Object> map); 
 }
