@@ -72,4 +72,14 @@
 		insert into tbl_boardfile 
 		values(BOARDFILE_SEQ.NEXTVAL, #{idx}, #{fileName}, #{fileOrgName}, #{filePath}, #{fileSize}, #{fileExt},'N' )
 	</insert>
+	
+	<delete id="deleteCheckBoard" parameterType="hashmap">
+		DELETE 
+		FROM TBL_BOARD
+		WHERE BOARDNO IN 
+		<foreach collection="list" item="item" 
+			open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
 </mapper>

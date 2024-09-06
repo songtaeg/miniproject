@@ -100,6 +100,21 @@ public class BoardServiceImpl implements BoardService{
 		return null;
 	}
 
+	@Override
+	public HashMap<String, Object> removeCheckBoard(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap =
+				new HashMap<String, Object>();
+		try {
+			boardMapper.deleteCheckBoard(map);
+			resultMap.put("result", "success");
+		} catch (Exception e) {
+			// TODO: handle exception
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
+
 
 	
 }

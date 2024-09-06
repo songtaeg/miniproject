@@ -38,4 +38,13 @@
 		FROM SUBJECT 
 	</select>
 	
+	<select id="selectEmpList" parameterType="hashmap" resultType="com.example.test1.model.Emp">
+		SELECT *
+		FROM EMP
+		where deptno in
+		<foreach collection="list" item="item" 
+			open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
 </mapper>

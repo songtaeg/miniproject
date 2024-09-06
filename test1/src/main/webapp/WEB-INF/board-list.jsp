@@ -82,6 +82,7 @@
 		</select>
 		<table>
 			<tr>
+				<th></th>
 				<th>게시글번호</th>
 				<th>제목</th>
 				<th>작성자</th>
@@ -91,6 +92,9 @@
 				<th>삭제</th>
 			</tr>
 			<tr v-for="item in list">
+				<td>
+					<input type="checkbox" v-model="selectItem" :value="item.boardNo">
+				</td>
 				<td>{{item.boardNo}}</td>
 				<td><a href="#" @click="fnView(item.boardNo)">{{item.title}}</a></td>
 				<td>{{item.userName}}</td>
@@ -104,6 +108,7 @@
 				</td>
 			</tr>	
 		</table>
+		<button @click="fnCheckRemove">선택삭제</button>
 		<div>
 			<button @click=fnInsert>글쓰기</button>
 		</div>
@@ -136,7 +141,8 @@
 				currentPage: 1, //현재 페이지
 				//pageSize: 5,   //한 페이지에 5개     
 				totalPages: 1, 
-				selectSize: 5
+				selectSize: 5,
+				selectItem:[]
             };
         },
         methods: {
@@ -191,6 +197,20 @@
 			fnInsert(){
 				$.pageChange("board-insert2.do",{})
 			},
+			fnCheckRemove(){
+				var self = this;
+				var fList = JSON.stringify(self.selectItem);
+				var nparmap = {selectItem : fList};
+				$.ajax({
+					url:"check-remove.dox",
+					dataType:"json",	
+					type : "POST", 
+					data : nparmap,
+					success : function(data) { 
+						self.fnGetList(1);
+					}
+				});
+			}
 		
         },
         mounted() {

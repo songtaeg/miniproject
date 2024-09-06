@@ -20,4 +20,6 @@ public interface StudentMapper {
 	
 	List<Student> selectSubject();
 	
+	List<Emp> selectEmpList(HashMap<String, Object> map);
+	
 }
