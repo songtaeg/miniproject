@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.test1.model.Area;
 import com.example.test1.model.Board;
 import com.example.test1.model.Chart;
+import com.example.test1.model.Item;
 
 @Mapper
 public interface AreaMapper {
