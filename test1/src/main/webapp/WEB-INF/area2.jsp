@@ -29,7 +29,7 @@
 		<button @click=fnNxNy>클릭</button>
 		<hr>
 		<div>
-			{ {{ nx }},{{ ny }} } 
+			{ {{ nxnyList.nx }},{{ nxnyList.ny }} } 
 		</div>		
 	</div>
 </body>
@@ -100,8 +100,7 @@
 					si:self.si,
 					gu:self.gu,
 					dong:self.dong,
-					nx:self.dong.nx,
-					ny:self.dong.ny
+
 				};
 				$.ajax({
 					url:"nxny-list.dox",
@@ -110,7 +109,8 @@
 					data : nparmap,
 					success : function(data) {
 						console.log(data);
-						self.nxnyList=data.nxnyList;
+						self.nx=data.nx;
+						self.ny=data.ny;
 					}
 				});
 			}
