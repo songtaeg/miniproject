@@ -14,7 +14,9 @@
 		작성자:<span> {{info.userId}}</span>
 		<div v-if="sessionId == info.userId || sessionStatus =='A' ">
 			<button>삭제</button>
-		</div>		
+		</div>
+		<hr>
+		댓글: 	
 	</div>
 </body>
 </html>

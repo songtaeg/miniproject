@@ -96,10 +96,13 @@
 					<input type="checkbox" v-model="selectItem" :value="item.boardNo">
 				</td>
 				<td>{{item.boardNo}}</td>
-				<td><a href="#" @click="fnView(item.boardNo)">{{item.title}}</a></td>
+				<td>
+					<a href="#" @click="fnView(item.boardNo)">
+					{{item.title}}</a> ( {{item.cnt}} )
+				</td>
 				<td>{{item.userName}}</td>
 				<td>{{item.hit}}</td>
-				<td>{{item.cdateTime}}</td>
+				<td>{{item.fCdatetime}}</td>
 				<td>{{item.category}}
 				<td>
 					<div v-if="sessionEmail == item.email || sessionStatus=='A' ">
@@ -142,7 +145,7 @@
 				//pageSize: 5,   //한 페이지에 5개     
 				totalPages: 1, 
 				selectSize: 5,
-				selectItem:[]
+				selectItem:[],
             };
         },
         methods: {
@@ -150,7 +153,7 @@
 				var self = this;
 				self.pageSize=self.selectSize;
 				self.currentPage=page;
-				var startIndex=(page-1)*self.pageSize;
+				var startIndex=(page-1) * self.pageSize;
 				var outputNumber=self.pageSize;
 				var nparmap = {
 					keyword : self.keyword,

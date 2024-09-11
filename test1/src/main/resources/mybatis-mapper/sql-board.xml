@@ -4,9 +4,20 @@
 
 <mapper namespace="com.example.test1.mapper.BoardMapper">
 	<select id="selectBoardList" parameterType="hashmap" resultType="com.example.test1.model.Board">
-		SELECT *
+		SELECT  b.*,
+       			u.*, 
+		       CASE
+		           WHEN TRUNC(b.cdatetime) = TRUNC(SYSDATE) THEN TO_CHAR(b.cdatetime, 'HH24:MI:SS')
+		           ELSE TO_CHAR(b.cdatetime, 'YYYY-MM-DD')
+		       END AS F_CDATETIME,
+		       NVL(c.cnt, 0) AS cnt
 		FROM TBL_BOARD b
-		inner join tbl_user u on b.userid=u.userid
+		INNER JOIN tbl_user u ON b.userid = u.userid
+		LEFT JOIN (
+		    SELECT boardno, COUNT(boardno) AS cnt
+		    FROM tbl_comment
+		    GROUP BY boardno
+		) c ON b.boardno = c.boardno
 		WHERE 1=1
 		<if test="category !='' and category !=null">
 			and category=#{category}
@@ -22,7 +33,7 @@
 		<if test="searchOption == 'name'">
 			 and username LIKE '%' || #{keyword} || '%'
 		</if>
-		order by cdatetime desc, boardno desc
+		order by cdatetime desc, b.boardno desc
 		offset #{startIndex} rows FETCH FIRST #{outputNumber} ROWS only
 		<!-- <choose>
 			<when test="searchOption=='title'">
@@ -82,4 +93,6 @@
 			#{item}
 		</foreach>
 	</delete>
+	
+
 </mapper>

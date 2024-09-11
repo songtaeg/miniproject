@@ -79,8 +79,8 @@ public class BoardServiceImpl implements BoardService{
 			Board board= boardMapper.selectBoardInfo(map);
 			System.out.println(map);
 			//List<Board> commentList = boardMapper.selectComment(map);
-			//resultMap.put("commentList", commentList);
 			resultMap.put("info", board);
+			//resultMap.put("commentList", commentList);
 		
 			resultMap.put("result", "success");
 			resultMap.put("message", "검색되었습니다.");

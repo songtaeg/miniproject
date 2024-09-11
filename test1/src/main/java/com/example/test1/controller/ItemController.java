@@ -27,6 +27,12 @@ public class ItemController {
         return "/item-list";
     }
 	
+	@RequestMapping("/weather.do") 
+    public String main2(Model model) throws Exception{
+
+        return "/weather";
+    }
+	
 	@RequestMapping(value = "/item.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String Item(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

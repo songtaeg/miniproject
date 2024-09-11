@@ -26,6 +26,12 @@ public class AreaController {
         return "/area";
     }
 	
+	@RequestMapping("/area2.do") 
+    public String area2(Model model) throws Exception{
+
+        return "/area2";
+    }
+	
 	@RequestMapping("/addr.do") 
 	public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		
@@ -33,13 +39,50 @@ public class AreaController {
 	}
 	
 
-	
 	@RequestMapping(value = "/area.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String Area(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap 
 			= new HashMap<String, Object>();
 		resultMap = areaService.searchArea(map);
+		
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/si-list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String si(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap 
+			= new HashMap<String, Object>();
+		resultMap = areaService.searchsiList(map);
+		
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/gu-list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String gu(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap 
+			= new HashMap<String, Object>();
+		resultMap = areaService.searchguList(map);
+		
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/dong-list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String dong(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap 
+			= new HashMap<String, Object>();
+		resultMap = areaService.searchdongList(map);
+		
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/nxny-list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String nxny(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap 
+			= new HashMap<String, Object>();
+		resultMap = areaService.searchNxNy(map);
 		
 		return new Gson().toJson(resultMap);
 	}

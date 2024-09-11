@@ -24,4 +24,35 @@
 		and gu=#{gu} 
 		group by si,gu,dong
 	</select>
+	
+	<select id="siList" parameterType="hashmap" resultType="com.example.test1.model.Area">
+		select si 
+		from area 
+		group by si
+		order by si
+	</select>
+	
+	<select id="guList" parameterType="hashmap" resultType="com.example.test1.model.Area">
+		select si,gu 
+		from area
+		where si=#{si} and gu is not null
+		group by si,gu
+		order by gu
+	</select>
+	
+	<select id="dongList" parameterType="hashmap" resultType="com.example.test1.model.Area">
+		select si,gu,dong 
+		from area
+		where si=#{si} and gu=#{gu} and dong is not null
+		group by si,gu,dong
+		order by gu
+	</select>
+	
+	<select id="selectNxNy" parameterType="hashmap" resultType="com.example.test1.model.Area">
+		select si,gu,dong,nx,ny 
+		from area
+		where si=#{si} and gu=#{gu} and dong=#{dong}
+		group by si,gu,dong,nx,ny
+		order by gu
+	</select>
 </mapper>

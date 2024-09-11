@@ -8,4 +8,7 @@ public class Area {
 	private String gu;
 	private String dong;
 	
+	private int nx;
+	private int ny;
+	
 }

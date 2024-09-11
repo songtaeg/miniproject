@@ -17,4 +17,10 @@ public interface AreaMapper {
 	List<Area> selectGuList(HashMap<String, Object> map);
 
 	List<Area> selectDongList(HashMap<String, Object> map);
+	
+	List<Area> siList(HashMap<String, Object> map);
+	List<Area> guList(HashMap<String, Object> map);
+	List<Area> dongList(HashMap<String, Object> map);
+	
+	List<Area> selectNxNy(HashMap<String, Object> map);
 }

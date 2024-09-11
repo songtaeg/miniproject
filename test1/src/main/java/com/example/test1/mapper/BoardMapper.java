@@ -29,4 +29,5 @@ public interface BoardMapper {
 	void insertBoardFile(HashMap<String, Object> map);
 	
 	void deleteCheckBoard(HashMap<String, Object> map);
+	
 }

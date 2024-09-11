@@ -3,9 +3,12 @@ package com.example.test1.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.example.test1.constants.ResMessage;
 import com.example.test1.mapper.ItemMapper;
 import com.example.test1.model.Code;
 import com.example.test1.model.Item;
@@ -22,7 +25,22 @@ public class ItemServiceImpl implements ItemService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		List<Item> list =itemMapper.selectItem(map);
 		
-		resultMap.put("list", list);
+		try {
+			resultMap.put("list", list);
+			resultMap.put("result", "success");
+			resultMap.put("message", ResMessage.Success);
+		} catch (DataAccessException e) {
+			// TODO: handle exception
+			resultMap.put("message", ResMessage.DB_ACCESS_ERROR);
+			resultMap.put("result", "fail");
+		}catch (PersistenceException e) {
+			// TODO: handle exception
+			resultMap.put("message", ResMessage.MYBATIS_ERROR);
+			resultMap.put("result", "fail");
+		}catch (Exception e) {
+			resultMap.put("message", ResMessage.UNKNOWN_ERROR);
+			resultMap.put("result", "fail");
+		}
 		
 		return resultMap;
 	}

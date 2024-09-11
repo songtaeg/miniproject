@@ -38,4 +38,40 @@ public class AreaServiceImpl implements AreaService{
 		}
 		return resultMap;
 	}
+
+	@Override
+	public HashMap<String, Object> searchsiList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Area> siList=areaMapper.siList(map);
+		resultMap.put("siList", siList);
+		return resultMap;
+	}
+
+	@Override
+	public HashMap<String, Object> searchguList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Area> guList=areaMapper.guList(map);
+		resultMap.put("guList", guList);
+		return resultMap;
+	}
+
+	@Override
+	public HashMap<String, Object> searchdongList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Area> dongList=areaMapper.dongList(map);
+		resultMap.put("dongList", dongList);
+		return resultMap;
+	}
+
+	@Override
+	public HashMap<String, Object> searchNxNy(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Area> nxnyList=areaMapper.selectNxNy(map);
+		resultMap.put("nxnyList", nxnyList);
+		return resultMap;
+	}
 }

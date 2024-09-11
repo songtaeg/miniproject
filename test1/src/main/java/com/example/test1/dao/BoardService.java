@@ -19,4 +19,6 @@ public interface BoardService {
 	HashMap<String,Object> addBoardFile(HashMap<String,Object> map); 
 	
 	HashMap<String,Object> removeCheckBoard(HashMap<String,Object> map);
+	
+	
 }
